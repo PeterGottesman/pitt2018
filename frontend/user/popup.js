@@ -40,15 +40,6 @@ function getCurrentTabUrl(callback) {
 	var url = tab.url;
 	callback(url);
     });
-
-    // Most methods of the Chrome extension APIs are asynchronous. This means that
-    // you CANNOT do something like this:
-    //
-    // var url;
-    // chrome.tabs.query(queryInfo, (tabs) => {
-    //   url = tabs[0].url;
-    // });
-    // alert(url); // Shows "undefined", because chrome.tabs.query is async.
 }
 
 function getReviewsByURLExact(url) {
@@ -56,7 +47,9 @@ function getReviewsByURLExact(url) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", getUrl, false);
     xhr.send(null);
-    displayReviews(xhr.responseText);
+    var data = xhr.responseText;
+    console.log(data);
+    displayReviews(JSON.parse(data));
 }
 
 function getReviewsBySite(url) {
@@ -76,7 +69,12 @@ function getReviewsByAuthor(url, title, author) {
 }
 
 function displayReviews(json) {
-    
+    console.log(json);
+    document.write("<ul>");
+    for (var rating in json["ratings"]) {
+	document.write("<li> Rating:" + json["ratings"][rating].rating + " Reviewer: " + json["ratings"][rating].reviewer + " </li>");
+    }
+    document.write("</ul>");
 }
 
 window.addEventListener('load', function load(event){

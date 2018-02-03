@@ -16,12 +16,12 @@
     <title>doctoRATE (Patient)</title>
     <style type="text/css">
       body {
-      margin: 10px;
+      margin: 25px;
       white-space: nowrap;
       }
 
       h1 {
-      font-size: 15px;
+      font-size: 25px;
       }
 
       #container {
@@ -42,28 +42,7 @@
 
   <body>
     <h1><b>doctoRATE (Patient)</b></h1>
-    <h1>To use doctoRATE as a patient, simply browse articles and other information on the web to see the recommendation % of each article.</h1>
-    <h1>This allows for a more filtered display of information when browsing for useful resources.</h1>
     <div id="container">
-      <form action="http://localhost:5000/addReview" method="post" name="formymcformface">
-	<input name="url" id="url" type="hidden"/>
-	<input name="title" id="title" type="hidden"/>
-	<input name="reviewerID" id="reviewerID" type="hidden" value="1234567"/>
-	<input name="author" id="author" type="hidden"/>
-	<fieldset id="rating">
-	  <input name="rating" type="radio" value="10"> 1 (Poor) </input>
-        <br>
-	  <input name="rating" type="radio" value="20"> 2 (Doing Better) </input>
-        <br>
-	  <input name="rating" type="radio" value="30"> 3 (Average) </input>
-        <br>
-	  <input name="rating" type="radio" value="40"> 4 (Better than average) </input>
-        <br>
-	  <input name="rating" type="radio" value="50"> 5 (Great) </input>
-	</fieldset>
-          <br>
-	<input type="submit"/>
-      </form>
     </div>
   </body>
 </html>
