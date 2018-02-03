@@ -60,8 +60,12 @@ def setDBVals():
 
 @app.route("/getReviews", methods=["GET"])
 def getDBVals():
-    # url = request.args("url")
-    res = Review.query.filter(Review.url.startswith(url)).all()
+    url = request.args.get("url")
+    exact = request.args.get("exact")
+    if exact == "True":
+        res = Review.query.filter(Review.url == url)
+    else:
+        res = Review.query.filter(Review.url.startswith(url))
     for rev in res:
         print(rev.ratingID, rev.url, rev.title, rev.author, rev.rating, rev.reviewerID)
     return "yo!\n"
