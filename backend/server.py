@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import db
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -55,7 +55,7 @@ def setDBVals():
     dbase.session.commit()
     return "Completed Successfully!\n"
 
-@app.route("/getReviews", methods=["GET"])
+@app.route("/getReviews/byURL", methods=["GET"])
 def getDBVals():
     url = request.args.get("url")
     exact = request.args.get("exact")
@@ -63,10 +63,25 @@ def getDBVals():
         res = Review.query.filter(Review.url == url)
     else:
         res = Review.query.filter(Review.url.startswith(url))
+    jsonOut = "{"
     for rev in res:
-        print(rev.ratingID, rev.url, rev.title, rev.author, rev.rating, rev.reviewerID)
-    return "yo!\n"
+        jsonOut += '\n"rating" : {'
+        jsonOut += '\n"ratingID" : "' + str(rev.ratingID)
+        jsonOut += '",\n"url" : "' + rev.url
+        jsonOut += '",\n"title" : "' + rev.title
+        jsonOut += '",\n"author" : "' + rev.author
+        jsonOut += '",\n"rating" : "' + str(rev.rating)
+        jsonOut += '",\n"reviewerID" : "' + str(rev.reviewerID)
+        jsonOut += '\n},'
+    jsonOut = jsonOut[:-1]
+    jsonOut += "\n}"
+    return jsonOut
     
-def reviewerExists(reviewerID):
-    pass
-    
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return response
+        

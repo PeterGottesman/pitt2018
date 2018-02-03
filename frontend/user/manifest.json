@@ -5,6 +5,12 @@
     "description": "A Chrome extension to help find reputable health news based on expert curation. Browse the web with the safety of knowing that you are previewed the most useful information first",
     "version": "1.0",
 
+    "content_scripts": [
+	{
+	    "matches" : ["http://*/*", "https://*/*"],
+	    "js" : ["content-script.js"]
+	}
+    ],
     "browser_action": {
 	"default_icon": "icon.png",
 	"default_popup": "popup.html"
