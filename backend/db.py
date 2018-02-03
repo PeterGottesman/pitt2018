@@ -1,4 +1,5 @@
-import secrets
+from pitt2018.backend import secrets
+
 
 def getURI():
     URI = "mysql+pymysql://" + secrets.username + ":" + secrets.password + "@" + \
