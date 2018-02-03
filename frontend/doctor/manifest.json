@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
 
-    "name": "DoctoRATE",
-    "description": "I'm really tired",
+    "name": "DoctoRATE (Doctor)",
+    "description": "To use doctoRATE, simply leave a rating on an article related to your respected specialization. This allows for people who view your profile in upcoming releases to more easily know how up to date you are in your specialization, as well as be provided with better information.",
     "version": "1.0",
 
     "browser_action": {
