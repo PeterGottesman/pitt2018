@@ -1,10 +1,10 @@
 CREATE DATABASE doctrate;
 
-CREATE TABLE Reviews
+CREATE TABLE reviewers
 (
-PersonID INT,
-LastName VARCHAR (255),
-FirstName VARCHAR (255),
-Specialty VARCHAR (255),
-Experience INT,
+personID INT,
+lastName VARCHAR (255),
+firstName VARCHAR (255),
+specialty VARCHAR (255),
+experience INT,
 );
