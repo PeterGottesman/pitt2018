@@ -63,18 +63,15 @@ def getDBVals():
         res = Review.query.filter(Review.url == url)
     else:
         res = Review.query.filter(Review.url.startswith(url))
-    jsonOut = "{"
+    jsonOut = '{"ratings" : ['
     for rev in res:
-        jsonOut += '\n"rating" : {'
-        jsonOut += '\n"ratingID" : "' + str(rev.ratingID)
-        jsonOut += '",\n"url" : "' + rev.url
-        jsonOut += '",\n"title" : "' + rev.title
-        jsonOut += '",\n"author" : "' + rev.author
-        jsonOut += '",\n"rating" : "' + str(rev.rating)
-        jsonOut += '",\n"reviewerID" : "' + str(rev.reviewerID)
-        jsonOut += '\n},'
+        reviewerRes = Reviewer.query.filter(Reviewer.reviewerID == rev.reviewerID)
+        jsonOut += '{'
+        jsonOut += '"rating" : "' + str(rev.rating)
+        jsonOut += '","reviewer" : "' + reviewerRes[0].firstName
+        jsonOut += '"},'
     jsonOut = jsonOut[:-1]
-    jsonOut += "\n}"
+    jsonOut += "]}"
     return jsonOut
     
 

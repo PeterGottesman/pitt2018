@@ -38,16 +38,18 @@ function getCurrentTabUrl(callback) {
 	// A tab is a plain object that provides information about the tab.
 	// See https://developer.chrome.com/extensions/tabs#type-Tab
 	var url = tab.url;
-	callback(url, chrome.tabs);
+	callback(url);
     });
 }
 
-function getReviewsByURLExact(url, tabs) {
+function getReviewsByURLExact(url) {
     var getUrl =  "http://localhost:5000/getReviews/byURL?exact=True&url="+url;
     var xhr = new XMLHttpRequest();
     xhr.open("GET", getUrl, false);
     xhr.send(null);
-    displayReviews(xhr.responseText, tabs);
+    var data = xhr.responseText;
+    console.log(data);
+    displayReviews(JSON.parse(data));
 }
 
 function getReviewsBySite(url) {
@@ -66,19 +68,13 @@ function getReviewsByAuthor(url, title, author) {
     displayReviews(xhr.responseText);
 }
 
-function displayReviews(json, tabs) {
-    tabs.executeScript({
-	code: "\
-    if (typeof(data) == 'object') {\
-	document.write('<ul>');\
-	for (var i in data) {\
-	    document.write('<li>' + i);\
-	    tree(data[i]);\
-	}\
-	document.write('</ul>');\
-    } else {\
-	document.write(' => ' + data);\
-    }"});
+function displayReviews(json) {
+    console.log(json);
+    document.write("<ul>");
+    for (var rating in json["ratings"]) {
+	document.write("<li> Rating:" + json["ratings"][rating].rating + " Reviewer: " + json["ratings"][rating].reviewer + " </li>");
+    }
+    document.write("</ul>");
 }
 
 window.addEventListener('load', function load(event){
