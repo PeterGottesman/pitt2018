@@ -38,25 +38,16 @@ function getCurrentTabUrl(callback) {
 	// A tab is a plain object that provides information about the tab.
 	// See https://developer.chrome.com/extensions/tabs#type-Tab
 	var url = tab.url;
-	callback(url);
+	callback(url, chrome.tabs);
     });
-
-    // Most methods of the Chrome extension APIs are asynchronous. This means that
-    // you CANNOT do something like this:
-    //
-    // var url;
-    // chrome.tabs.query(queryInfo, (tabs) => {
-    //   url = tabs[0].url;
-    // });
-    // alert(url); // Shows "undefined", because chrome.tabs.query is async.
 }
 
-function getReviewsByURLExact(url) {
+function getReviewsByURLExact(url, tabs) {
     var getUrl =  "http://localhost:5000/getReviews/byURL?exact=True&url="+url;
     var xhr = new XMLHttpRequest();
     xhr.open("GET", getUrl, false);
     xhr.send(null);
-    displayReviews(xhr.responseText);
+    displayReviews(xhr.responseText, tabs);
 }
 
 function getReviewsBySite(url) {
@@ -75,8 +66,19 @@ function getReviewsByAuthor(url, title, author) {
     displayReviews(xhr.responseText);
 }
 
-function displayReviews(json) {
-    
+function displayReviews(json, tabs) {
+    tabs.executeScript({
+	code: "\
+    if (typeof(data) == 'object') {\
+	document.write('<ul>');\
+	for (var i in data) {\
+	    document.write('<li>' + i);\
+	    tree(data[i]);\
+	}\
+	document.write('</ul>');\
+    } else {\
+	document.write(' => ' + data);\
+    }"});
 }
 
 window.addEventListener('load', function load(event){
