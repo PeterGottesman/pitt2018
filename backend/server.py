@@ -45,7 +45,7 @@ class Review(dbase.Model):
         
 @app.route("/")
 def hello():
-    return "What are you doing Dave?"
+    return "Just what do you think you are doing Dave?"
 
 @app.route("/addReview", methods=["POST"])
 def setDBVals():
