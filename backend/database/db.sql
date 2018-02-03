@@ -1,3 +1,4 @@
+DROP TABLE reviewers;
 CREATE TABLE reviewers
 (
 reviewerID SERIAL PRIMARY KEY,
@@ -15,5 +16,6 @@ url VARCHAR (2083),
 title VARCHAR (255),
 author VARCHAR (255),
 rating TINYINT,
-reviews BIGINT
+reviewerID BIGINT UNSIGNED NOT NULL,
+FOREIGN KEY (reviewerID) REFERENCES reviewers(reviewerID)
 );
