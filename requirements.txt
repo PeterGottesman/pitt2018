@@ -1,7 +1,10 @@
 click==6.7
+configparser==3.5.0
 Flask==0.12.2
+Flask-SQLAlchemy==2.3.2
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
-mysql-connector-python-rf==2.2.2
+PyMySQL==0.8.0
+SQLAlchemy==1.2.2
 Werkzeug==0.14.1

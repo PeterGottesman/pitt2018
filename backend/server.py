@@ -49,11 +49,8 @@ def hello():
 
 @app.route("/addReview", methods=["POST"])
 def setDBVals():
-    json = request.get_json()
-    if not json:
-        return "Must send json\n"
-    review = Review(json.get("url"), json.get("title"),
-                    json.get("author"), json.get("rating"), json.get("reviewerID"))
+    review = Review(request.form["url"], request.form["title"],
+                    request.form["author"], request.form["rating"], request.form["reviewerID"])
     dbase.session.add(review)
     dbase.session.commit()
     return "Completed Successfully!\n"
