@@ -71,4 +71,11 @@ function setVals(url, title, author) {
 window.addEventListener('load', function load(event){
     // var createButton = document.getElementById('create_button');
     getCurrentTabUrl(setVals);
+    
+    document.getElementById("formy").addEventListener("submit", function submit(event) {
+
+	window.close();
+    });
 });
+
+

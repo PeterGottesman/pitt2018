@@ -72,7 +72,7 @@ function displayReviews(json) {
     console.log(json);
     document.write("<ul>");
     for (var rating in json["ratings"]) {
-	document.write("<li> Rating:" + json["ratings"][rating].rating + " Reviewer: " + json["ratings"][rating].reviewer + " </li>");
+	document.write("<li> Rating:" + json["ratings"][rating].rating/10 + " stars Reviewer: " + json["ratings"][rating].reviewer + " </li>");
     }
     document.write("</ul>");
 }
