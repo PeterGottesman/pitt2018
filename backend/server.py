@@ -73,9 +73,3 @@ def getDBVals():
 def reviewerExists(reviewerID):
     pass
     
-
-
-# def main():
-
-
-# main()
