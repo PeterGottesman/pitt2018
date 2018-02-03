@@ -10,7 +10,7 @@ authentication TINYINT (1)
 
 CREATE TABLE reviews
 (
-ratingID SERIAL,
+ratingID SERIAL NOT NULL PRIMARY KEY,
 url VARCHAR (2083),
 title VARCHAR (255),
 author VARCHAR (255),
