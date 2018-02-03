@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+
+    "name": "DoctoRATE Patient Extension",
+    "description": "A Chrome extension to help find reputable health news based on expert curation",
+    "version": "1.0",
+
+    "browser_action": {
+	"default_icon": "icon.png",
+	"default_popup": "popup.html"
+    },
+    "permissions": [
+	"activeTab",
+	"storage"
+    ]
+}
