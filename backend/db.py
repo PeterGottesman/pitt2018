@@ -1,4 +1,4 @@
-from pitt2018.backend import secrets
+import secrets
 
 
 def getURI():
