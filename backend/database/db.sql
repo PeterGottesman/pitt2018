@@ -1,4 +1,4 @@
-DROP TABLE reviewers;
+DROP TABLE reviewers, reviews;
 CREATE TABLE reviewers
 (
 reviewerID SERIAL PRIMARY KEY,
