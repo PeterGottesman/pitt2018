@@ -38,14 +38,7 @@ function getCurrentTabUrl(callback) {
 	// A tab is a plain object that provides information about the tab.
 	// See https://developer.chrome.com/extensions/tabs#type-Tab
 	var url = tab.url;
-	var title = tab.title;
-	var author = "";
-	chrome.tabs.executeScript({
-	    code: '(' + getAuthor + ')();'
-	}, (results) => {
-	    author = results[0];
-	    callback(url, title, author);
-	});
+	callback(url);
     });
 
     // Most methods of the Chrome extension APIs are asynchronous. This means that
@@ -58,17 +51,34 @@ function getCurrentTabUrl(callback) {
     // alert(url); // Shows "undefined", because chrome.tabs.query is async.
 }
 
-function setVals(url, title, author) {
-    document.getElementById('url').value = url;
-    document.getElementById('title').value = title;
-    if (author!="") {
-	document.getElementById('author').value = author;
-    } else {
-	document.getElementById('author').type = "";
-    }
+function getReviewsByURLExact(url) {
+    var getUrl =  "http://localhost:5000/getReviews/byURL?exact=True&url="+url;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", getUrl, false);
+    xhr.send(null);
+    displayReviews(xhr.responseText);
+}
+
+function getReviewsBySite(url) {
+    var getUrl =  "http://localhost:5000/getReviews/byURL?url="+url;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", getUrl, false);
+    xhr.send(null);
+    displayReviews(xhr.responseText);
+}
+
+function getReviewsByAuthor(url, title, author) {
+    var getUrl =  "http://localhost:5000/getReviews"
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", getUrl, false);
+    xhr.send(null);
+    displayReviews(xhr.responseText);
+}
+
+function displayReviews(json) {
+    
 }
 
 window.addEventListener('load', function load(event){
-    // var createButton = document.getElementById('create_button');
-    getCurrentTabUrl(setVals);
+    getCurrentTabUrl(getReviewsByURLExact);
 });
