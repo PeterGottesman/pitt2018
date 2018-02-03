@@ -1,4 +1,4 @@
-#doctoRATE!
+# doctoRATE!
 
 Browsing the web for sources is easy, but filtering click-bait and other nonsense? That's another story.
 
