@@ -43,12 +43,12 @@
   <body>
     <h1><b>doctoRATE (Doctor)</b></h1>
     <h1>To use doctoRATE, simply leave a rating on an article related to your respected specialization.</h1>
-    <h1>This allows for people who view your profile in upcoming releases to more easily know how up to date you are in your specialization, as well as be provided with better information.</h1>
+    <h1>This allows for people who view your profile in upcoming releases to more easily know how up to date you are <br/> in your specialization, as well as be provided with better information.</h1>
     <div id="container">
       <form action="http://localhost:5000/addReview" method="post" name="formymcformface" id="formy">
 	<input name="url" id="url" type="hidden"/>
 	<input name="title" id="title" type="hidden"/>
-	<input name="reviewerID" id="reviewerID" placeholder="reviewerID"/>
+	<input name="reviewerID" id="reviewerID" type="hidden" placeholder="reviewerID" value="1234"/>
 	<input name="author" id="author" placeholder="author" type="hidden"/>
 	<fieldset id="rating">
 	  <input name="rating" type="radio" value="10"> 1 (Poor) </input>
@@ -62,7 +62,7 @@
 	  <input name="rating" type="radio" value="50"> 5 (Great) </input>
 	</fieldset>
           <br>
-	<input type="submit"/>
+	<input type="submit" id="subboi"/>
 
       </form>
     </div>
