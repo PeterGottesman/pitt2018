@@ -1,4 +1,5 @@
-DROP TABLE reviewers, reviews;
+DROP TABLE reviews, reviewers;
+
 CREATE TABLE reviewers
 (
 reviewerID SERIAL PRIMARY KEY,
@@ -19,3 +20,9 @@ rating TINYINT,
 reviewerID BIGINT UNSIGNED NOT NULL,
 FOREIGN KEY (reviewerID) REFERENCES reviewers(reviewerID)
 );
+
+
+INSERT INTO reviewers VALUES (1337, "Phil", "Dr", "Bullshit", 100, 1);
+INSERT INTO reviewers VALUES (420, "Oz", "Dr", "Bullshit", 24, 0);
+INSERT INTO reviewers VALUES (666, "Strangelove", "Dr", "Weaponry", 67, 1);
+INSERT INTO reviewers VALUES (1234, "Jekyll", "Dr", "Bullshit", 13, 1);
