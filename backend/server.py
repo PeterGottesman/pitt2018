@@ -68,7 +68,7 @@ def getDBVals():
         reviewerRes = Reviewer.query.filter(Reviewer.reviewerID == rev.reviewerID)
         jsonOut += '{'
         jsonOut += '"rating" : "' + str(rev.rating)
-        jsonOut += '","reviewer" : "' + reviewerRes[0].firstName
+        jsonOut += '","reviewer" : "Dr. ' + reviewerRes[0].lastName
         jsonOut += '"},'
     jsonOut = jsonOut[:-1]
     jsonOut += "]}"

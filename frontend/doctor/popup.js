@@ -73,8 +73,7 @@ window.addEventListener('load', function load(event){
     getCurrentTabUrl(setVals);
     
     document.getElementById("formy").addEventListener("submit", function submit(event) {
-
-	window.close();
+	//this hates me 
     });
 });
 
